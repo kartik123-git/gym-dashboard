@@ -1,5 +1,5 @@
 "use client"
-import CommonTable from '@/components/CommonTable';
+import CommonTable, { Column } from '@/components/CommonTable';
 import { Box, Button, Chip } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CommonModal from '@/components/CommonModal';
@@ -7,9 +7,15 @@ import { useState } from 'react';
 
 const GymMembers = () => {
   const [open , setOPen] = useState(false)
-  const [selectedRow, setSelectedRow] = useState(null);
+const [selectedRow, setSelectedRow] = useState<GymMember | null>(null);
+interface GymMember {
+  id: number;
+  name: string;
+  email: string;
+  status: "Active" | "Inactive";
+}
 
-   const columns = [
+   const columns:any = [
     {
       field: "id",
       headerName: "ID",
@@ -25,7 +31,7 @@ const GymMembers = () => {
     {
       field: "status",
       headerName: "Status",
-      render: (row) => (
+      render: (row:any) => (
         <Chip
           label={row.status}
           color={row.status === "Active" ? "success" : "error"}
@@ -35,7 +41,7 @@ const GymMembers = () => {
     {
       field: "action",
       headerName: "Action",
-      render: (row) => (
+      render: (row:any) => (
         <Box onClick={()=>{
           setSelectedRow(row);
           setOPen(true )}}>

@@ -50,7 +50,7 @@ export default function RevenueChart() {
         grid={{ vertical: true, horizontal: true }}
         yAxis={[
           {
-            valueFormatter: (value) => `₹${value / 1000}k`,
+            valueFormatter: (value:any) => `₹${value / 1000}k`,
           },
         ]}
       />
